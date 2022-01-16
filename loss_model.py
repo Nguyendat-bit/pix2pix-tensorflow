@@ -1,7 +1,8 @@
 from tensorflow import keras
 import tensorflow as tf 
-# LSGAN with mse or default - binary_crossentropy
+# binary_crossentropy
 # L1 or L2
+@tf.function
 def disc_loss(loss_func, disc_real_output, disc_gen_output):
     real_loss = loss_func(tf.experimental.numpy.full_like(disc_real_output, 0.9, dtype= tf.float32), disc_real_output)
     fake_loss = loss_func(tf.experimental.numpy.full_like(disc_gen_output, 0.1, dtype= tf.float32), disc_gen_output)
