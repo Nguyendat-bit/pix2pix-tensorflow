@@ -15,7 +15,7 @@ def decoder_block(x, y, filters):
     x = LeakyReLU(0.2)(x)
     return x
 
-def generator_model(input_shape= (512,512,3), trainable = True):
+def g_model(input_shape= (512,512,3), trainable = True):
     inputs = Input(shape = input_shape)
     initializer = tf.random_normal_initializer(0., 0.02)
 
@@ -46,5 +46,5 @@ def generator_model(input_shape= (512,512,3), trainable = True):
 
 if __name__ == '__main__':
     input_shape = (224,224,3)
-    model = generator_model(input_shape, False)
+    model = g_model(input_shape, False)
     model.summary()

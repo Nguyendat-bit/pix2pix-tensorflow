@@ -1,7 +1,6 @@
 from tensorflow.keras.models import Model
 import tensorflow as tf 
 from tensorflow.keras.layers import *
-from tensorflow.keras.applications.vgg19 import VGG19
 def down_block(x, filter, strides = 2, use_batch_norm = True):
     x = Conv2D(filter, 4, strides= strides)(x)
     if use_batch_norm:
