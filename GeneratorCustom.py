@@ -57,8 +57,8 @@ class DataGenerator(Sequence):
               (h, w, c) = x.shape
               angle = np.random.uniform(-self.rotation, self.rotation)
               RotMat = cv2.getRotationMatrix2D(center = (w, h), angle=angle, scale=1)
-              x = cv2.warpAffine(x, RotMat, (w, h))
-              y = cv2.warpAffine(y, RotMat, (w, h))
+              x = cv2.warpAffine(x.numpy(), RotMat, (w, h))
+              y = cv2.warpAffine(y.numpy(), RotMat, (w, h))
             X[i,] = x
             Y[i,] = y
 
