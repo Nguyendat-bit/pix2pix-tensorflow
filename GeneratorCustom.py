@@ -1,4 +1,4 @@
-from random import random
+
 import numpy as np
 from tensorflow.keras.utils import Sequence
 import cv2
@@ -28,7 +28,7 @@ class DataGenerator(Sequence):
     def __data_generation(self, all_filenames_temp):
         batch = len(all_filenames_temp)
         X = np.empty(shape=(batch, *self.input_size,3))
-        Y = np.empty(shape=(batch, *self.input_size, 1))
+        Y = np.empty(shape=(batch, *self.input_size, 3))
         for i, (fn, label_fn) in enumerate(all_filenames_temp):
             # 
             x = cv2.imread(fn)
