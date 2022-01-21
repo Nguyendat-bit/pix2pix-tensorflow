@@ -4,7 +4,7 @@ from tensorflow.keras.utils import Sequence
 import cv2
 import tensorflow as tf 
 class DataGenerator(Sequence):
-    def __init__(self, all_filenames, input_size, batch_size, brightness_range= None, random_flip= False, rotation = False, shuffle = True, seed = 123) -> None:
+    def __init__(self, all_filenames, input_size, batch_size, brightness_range= None, random_flip= False, rotation = False, shuffle = True) -> None:
         super(DataGenerator, self).__init__()
         self.all_filenames = all_filenames
         self.input_size = input_size
@@ -13,7 +13,6 @@ class DataGenerator(Sequence):
         self.brightness_range = brightness_range
         self.random_flip = random_flip
         self.rotation = rotation
-        np.random.seed(seed)
         self.on_epoch_end()
     def __len__(self):
         return int(np.floor(len(self.all_filenames) / self.batch_size))
@@ -33,7 +32,7 @@ class DataGenerator(Sequence):
         for i, (fn, label_fn) in enumerate(all_filenames_temp):
             # 
             x = cv2.cvtColor(cv2.imread(fn), cv2.COLOR_BGR2RGB)
-            x = tf.image.resize(x, self.input_size)
+            x = cv2.resize(x, self.input_size, cv2.INTER_LANCZOS4)
             x = tf.cast(x, tf.float32)
             x = (x - 127.5) / 127.5
 
@@ -42,7 +41,7 @@ class DataGenerator(Sequence):
               x = x*scale_bright
             #
             y = cv2.cvtColor(cv2.imread(label_fn), cv2.COLOR_BGR2RGB)
-            y = tf.image.resize(y, self.input_size)
+            y = cv2.resize(y, self.input_size, cv2.INTER_LANCZOS4)
             y = tf.cast(y, tf.float32)
             y = (y - 127.5) / 127.5
             if self.random_flip:
