@@ -48,5 +48,5 @@ def g_model(inp_shape = (256,256,3)):
     return Model(inputs, outputs, name = 'g_model')
 
 if __name__ == '__main__':
-    model = g_model()
+    model = g_model((128,128,3))
     model.summary()

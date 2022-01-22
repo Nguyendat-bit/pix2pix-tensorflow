@@ -1,4 +1,4 @@
-from replace_activation_in_pretrain_model import * 
+from replace_activation_in_pretrain_model import *
 from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.layers import *
 from tensorflow.keras.models import Model
@@ -12,7 +12,7 @@ def decoder_block(x, y, filters):
     x = ReLU()(x)
     x = Conv2D(filters, 4, padding= 'same', kernel_initializer= initializer)(x)
     x = BatchNormalization()(x)
-    x = ReLU(x)
+    x = ReLU()(x)
     return x
 
 def g_model(input_shape= (512,512,3), trainable = True, weights = None):
@@ -45,7 +45,7 @@ def g_model(input_shape= (512,512,3), trainable = True, weights = None):
     return Model(inputs, outputs, name = 'g_model')
 
 if __name__ == '__main__':
-    input_shape = (224,224,3)
+    input_shape = (256,256,3)
     model = g_model(input_shape, False)
     model.summary()
-    print(model.trainable_weights)
+
