@@ -24,7 +24,7 @@ def g_model(input_shape= (512,512,3), trainable = True, weights = None):
     resnet50.trainable = trainable
     replace_swish_with_relu(resnet50)
     """ Encoder """
-    s1 = resnet50.get_layer("input_1").output           ## (512 x 512)
+    s1 = resnet50.get_layer("input_3").output           ## (512 x 512)
     s2 = resnet50.get_layer("conv1_relu").output        ## (256 x 256)
     s3 = resnet50.get_layer("conv2_block3_out").output  ## (128 x 128)
     s4 = resnet50.get_layer("conv3_block4_out").output  ## (64 x 64)
@@ -43,6 +43,7 @@ def g_model(input_shape= (512,512,3), trainable = True, weights = None):
 
     outputs = Conv2D(3,4, padding= 'same', activation= 'tanh', kernel_initializer= initializer)(d4)
     return Model(inputs, outputs, name = 'g_model')
+    
 
 if __name__ == '__main__':
     input_shape = (256,256,3)
