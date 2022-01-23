@@ -9,6 +9,7 @@ class Gan_model(keras.Model):
         self.loss_func = loss_func
         self.d_optimizer = d_optimizer
         self.g_optimizer = g_optimizer
+    @tf.function
     def train_step(self, data):
         x, y = data
         with tf.GradientTape() as disc_tape:

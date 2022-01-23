@@ -53,7 +53,7 @@ if __name__ == '__main__':
     train_domainA  = sorted(glob2.glob(args.all_train[0]))
     train_domainB = sorted(glob2.glob(args.all_train[1]))
     all_train_filenames = list(zip(train_domainA, train_domainB))
-    data = DataGenerator(all_train_filenames, (args.image_size, args.image_size), args.batch_size, brightness_range, args.random_flip, args.shuffle)
+    data = DataGenerator(all_train_filenames, (args.image_size, args.image_size), args.batch_size, brightness_range, args.random_flip, args.rotation, args.shuffle)
     inp_shape=(args.image_size, args.image_size, 3)
     if args.bone == 'unet':
         g_model = unet.g_model(inp_shape)
@@ -73,6 +73,6 @@ if __name__ == '__main__':
 
     pix2pix.complie(d_optimizer, g_optimizer, loss_func= bce)
     pix2pix.fit(data, epochs = args.epochs)
-    tf.keras.models.save_model()
+    g_model.save(args.model_save)
 
     
