@@ -35,10 +35,10 @@ Training script:
 
 ```python
 
-python train.py --all-train ${link_to_train_A_folder} / 
+python train.py --all-train ${link_to_train_A_folder} \
     --all-train ${link_to_train_B_folder} --epochs ${epochs}
-    --bone ${bone} --weights ${weights} --pretrain ${pretrain} /
-    --batch-size ${batch_size} --rotation ${rotation} / 
+    --bone ${bone} --weights ${weights} --pretrain ${pretrain} \
+    --batch-size ${batch_size} --rotation ${rotation} \ 
     --random-brightness ${random_brightness} --image-size ${image-size}
 
 ```
