@@ -43,13 +43,13 @@ if __name__ == '__main__':
         print('{}.{}: {}'.format(i, arg, vars(args)[arg]))
     
     if args.random_brightness:
-        brightness_range = (0.75, 1.0)
+        brightness_range = (0.75, 1.2)
     else:
         brightness_range = None
 
     if args.pretrain:
         args.weights = 'imagenet'   
-
+    
     train_domainA  = sorted(glob2.glob(args.all_train[0]))
     train_domainB = sorted(glob2.glob(args.all_train[1]))
     all_train_filenames = list(zip(train_domainA, train_domainB))
